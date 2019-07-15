@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf8"/>
-  </head>
+    <head>
+        <meta charset="utf-8" />
+        <title>计时器</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+
+    <body>
+        <header class="header">
+            <form class="timeform">
+                <label for="hourinput" id="hour" class="hour">
+                    <input
+                        id="hourinput"
+                        type="text"
+                        placeholder="0"
+                        class="timeinput"/>
+                </label>
+                <label for="minuteinput" id="minute" class="minute">
+                    <input
+                        id="minuteinput"
+                        type="text"
+                        placeholder="0"
+                        class="timeinput"/>
+                </label>
+                <label for="secondinput" id="second" class="second">
+                    <input
+                        id="secondinput"
+                        type="text"
+                        placeholder="0"
+                        class="timeinput"/>
+                </label>
+                <button class="submit">开始正计时</button>
+                <button class="submit">开始倒计时</button>
+            </form>
+        </header>
+        <div class="currenttime">
+            <span class="timestyle">00:00:00</span>
+        </div>
+    </body>
 </html>
