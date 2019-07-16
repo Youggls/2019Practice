@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  background: #f2f4f7;
+}
+
+.header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: #97a5bc;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+input::-webkit-input-placeholder {
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #afafaf;
+  text-indent: 9px;
+  vertical-align: center;
+}
+
+.timeform {
+  position: relative;
+  width: 1140px;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0;
+}
+
+.countingform {
+  position: relative;
+  width: 1140px;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0;
+  visibility: hidden;
+}
+
+.hint {
+  font-family: PingFangSC-Regular;
+  color: #ffffff;
+  margin-left: 0;
+  margin-top: 24px;
+  font-size: 16px;
+}
+
+input.timeinput {
+  font-family: PingFangSC-Regular;
+  color: #222222;
+  width: 70px;
+  height: 40px;
+  border-radius: 5px;
+  border: 0;
+  padding: 0;
+  text-indent: 9px;
+}
+
+.hour {
+  position: relative;
+  margin-left: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 70px;
+  height: 40px;
+  display: inline-block;
+}
+
+.minute {
+  position: relative;
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 70px;
+  height: 40px;
+  display: inline-block;
+}
+
+.second {
+  position: relative;
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 70px;
+  height: 40px;
+  display: inline-block;
+}
+
+.submit {
+  position: relative;
+  width: 98px;
+  height: 40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  background: #2188e9;
+  color: #ffffff;
+  font-size: 16px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 0;
+}
+
+#hour::after {
+  content: "时";
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  width: 32px;
+  height: 22px;
+  text-align: right;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #222222;
+}
+
+#minute::after {
+  content: "分";
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  width: 32px;
+  height: 22px;
+  text-align: right;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #222222;
+}
+
+#second::after {
+  content: "秒";
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  width: 32px;
+  height: 22px;
+  text-align: right;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #222222;
+}
+
+.currenttime {
+  position: relative;
+  margin-top: 70px;
+  text-align: center;
+}
+
+.timestyle {
+  position: relative;
+  display: inline-block;
+  vertical-align: center;
+  line-height: 200px;
+  width: 960px;
+  height: 200px;
+  margin-top: 127px;
+  font-family: PTMono-Bold;
+  color: #333333;
+  font-size: 200px;
+}
