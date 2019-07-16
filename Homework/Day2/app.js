@@ -9,11 +9,8 @@
     let restTime = 0;
     let timmer;
     document.getElementById("hour").addEventListener("blur", checkHour, false);
-    //hourInput.addEventListener("blur", checkHour, false);
     document.getElementById("minute").addEventListener("blur", check, false);
-    //minuteInput.addEventListener("blur", check, false);
     document.getElementById("second").addEventListener("blur", check, false);
-    //secondInput.addEventListener("blur", check, false);
     document.getElementById("countup").addEventListener("click", countUpClick, false);
     document.getElementById("countdown").addEventListener("click", countDownClick, false);
     document.onkeydown = keyDown;
@@ -206,7 +203,11 @@
             clearBtn.classList = ["submit"];
             clearBtn.style.background = "#DD2E1D";
             clearBtn.style.marginLeft = "599px";
-            clearBtn.innerText = "清空计时器";
+            if (isCountUp) {
+                clearBtn.innerText = "清空正计时";
+            } else {
+                clearBtn.innerText = "清空倒计时";
+            }
             clearBtn.onclick = clear;
             newForm.appendChild(clearBtn);
             let restartBtn = document.createElement("button");
