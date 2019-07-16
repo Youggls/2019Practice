@@ -104,7 +104,7 @@ input.timeinput {
   border: 0;
 }
 
-#hour::after {
+.hour::after {
   content: "时";
   position: absolute;
   right: 9px;
@@ -117,7 +117,7 @@ input.timeinput {
   color: #222222;
 }
 
-#minute::after {
+.minute::after {
   content: "分";
   position: absolute;
   right: 9px;
@@ -130,7 +130,7 @@ input.timeinput {
   color: #222222;
 }
 
-#second::after {
+.second::after {
   content: "秒";
   position: absolute;
   right: 9px;

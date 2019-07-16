@@ -8,41 +8,38 @@
     let totalTime = 0;
     let restTime = 0;
     let timmer;
-    let hourInput = document.getElementById('hour');
-    hourInput.addEventListener('blur', checkHour, false);
-    let minuteInput = document.getElementById('minute');
-    minuteInput.addEventListener('blur', check, false);
-    let secondInput = document.getElementById('second');
-    secondInput.addEventListener('blur', check, false);
-    document.getElementById('countup').addEventListener('click', countUpClick, false);
-    document.getElementById('countdown').addEventListener('click', countDownClick, false);
+    document.getElementById("hour").addEventListener("blur", checkHour, false);
+    //hourInput.addEventListener("blur", checkHour, false);
+    document.getElementById("minute").addEventListener("blur", check, false);
+    //minuteInput.addEventListener("blur", check, false);
+    document.getElementById("second").addEventListener("blur", check, false);
+    //secondInput.addEventListener("blur", check, false);
+    document.getElementById("countup").addEventListener("click", countUpClick, false);
+    document.getElementById("countdown").addEventListener("click", countDownClick, false);
     document.onkeydown = keyDown;
     function keyDown() {
-        console.log(stat);
         if ((stat === 2 || stat === 3) && event.keyCode === 32) {
             if (stat === 2) {
-                stat = 3;
                 pause();
             } else {
-                stat = 2;
                 resume();
             }
         } else if (stat === 1 && event.keyCode === 13) {
             countUpClick();
-            stat = 2;
         }
     }
 
     
     function setTotalTime() {
-        originalHour = parseInt(document.getElementById('hour').value);
-        originalMinute = parseInt(document.getElementById('minute').value);
-        originalSecond = parseInt(document.getElementById('second').value);
+        originalHour = parseInt(document.getElementById("hour").value);
+        originalMinute = parseInt(document.getElementById("minute").value);
+        originalSecond = parseInt(document.getElementById("second").value);
         totalTime += originalHour * 60 * 60 * 1000 + originalMinute * 60 * 1000 + originalSecond * 1000;
     }
 
     function countUp() {
         if (restTime + 1000 > totalTime) {
+            stat = 4;
             changePage(4);
         } else {
             restTime += 1000;
@@ -59,11 +56,16 @@
                 second = "0" + second;
             }
             document.getElementById("time").innerText = hour + ":" + minute + ":" + second;
+            if (restTime === totalTime) {
+                stat = 4;
+                changePage(4);
+            }
         }
     }
 
     function countDown() {
         if (restTime - 1000 < 0) {
+            stat = 4;
             changePage(4);
         } else {
             restTime -= 1000;
@@ -80,12 +82,16 @@
                 second = "0" + second;
             }
             document.getElementById("time").innerText = hour + ":" + minute + ":" + second;
+            if (restTime <= 0) {
+                stat = 4;
+                changePage(4);
+            }
         }
     }
 
     function countUpClick() {
-        if (checkMinuteAndSecond(document.getElementById('minute')) &&
-            checkMinuteAndSecond(document.getElementById('second')) &&
+        if (checkMinuteAndSecond(document.getElementById("minute")) &&
+            checkMinuteAndSecond(document.getElementById("second")) &&
             checkHour()) {
             isCountUp = true;
             setTotalTime();
@@ -97,8 +103,8 @@
     }
 
     function countDownClick() {
-        if (checkMinuteAndSecond(document.getElementById('minute')) &&
-            checkMinuteAndSecond(document.getElementById('second')) &&
+        if (checkMinuteAndSecond(document.getElementById("minute")) &&
+            checkMinuteAndSecond(document.getElementById("second")) &&
             checkHour()) {
             isCountUp = false;
             setTotalTime();
@@ -116,14 +122,14 @@
             if (second < 10) {
                 second = "0" + second;
             }
-            document.getElementById('time').innerText = hour + ":" + minute + ":" + second;
+            document.getElementById("time").innerText = hour + ":" + minute + ":" + second;
             stat = 2;
             timmer = window.setInterval(countDown, 1000);
         }
     }
 
     function changePage(stat) {
-        let form = document.getElementById('timeform');
+        let form = document.getElementById("timeform");
         let parent = form.parentElement;
         let newForm = document.createElement("form");
         newForm.id = "timeform";
@@ -132,18 +138,18 @@
             newForm.innerHTML = originalForm;
             parent.removeChild(form);
             parent.appendChild(newForm);
-            let hourInput = document.getElementById('hour');
-            hourInput.addEventListener('blur', checkHour, false);
-            let minuteInput = document.getElementById('minute');
-            minuteInput.addEventListener('blur', check, false);
-            let secondInput = document.getElementById('second');
-            secondInput.addEventListener('blur', check, false);
-            document.getElementById('countup').addEventListener('click', countUpClick, false);
-            document.getElementById('countdown').addEventListener('click', countDownClick, false);
+            let hourInput = document.getElementById("hour");
+            hourInput.addEventListener("blur", checkHour, false);
+            let minuteInput = document.getElementById("minute");
+            minuteInput.addEventListener("blur", check, false);
+            let secondInput = document.getElementById("second");
+            secondInput.addEventListener("blur", check, false);
+            document.getElementById("countup").addEventListener("click", countUpClick, false);
+            document.getElementById("countdown").addEventListener("click", countDownClick, false);
         } else if (stat === 2 || stat === 3 || stat === 4) {
             let newHint = document.createElement("label");
             newHint.id = "hint";
-            newHint.classList = ['hint'];
+            newHint.classList = ["hint"];
             let hour = originalHour;
             let minute = originalMinute;
             let second = originalSecond;
@@ -178,15 +184,17 @@
             newForm.appendChild(newHint);
             if (stat !== 4) {
                 let pauseOrResumeBtn = document.createElement("button");
-                pauseOrResumeBtn.id = "pause";
+                
                 pauseOrResumeBtn.type = "button";
                 pauseOrResumeBtn.classList = ["submit"];
                 pauseOrResumeBtn.style.marginLeft = "20px";
                 pauseOrResumeBtn.style.marginTop = "15px";
                 if (stat === 2) {
+                    pauseOrResumeBtn.id = "pause";
                     pauseOrResumeBtn.innerText = "暂停计时器";
                     pauseOrResumeBtn.onclick = pause;
                 } else {
+                    pauseOrResumeBtn.id = "resume";
                     pauseOrResumeBtn.innerText = "恢复计时器";
                     pauseOrResumeBtn.onclick = resume;
                 }
@@ -203,7 +211,7 @@
             newForm.appendChild(clearBtn);
             let restartBtn = document.createElement("button");
             restartBtn.type = "button"
-            restartBtn.id = "resume";
+            restartBtn.id = "restart";
             restartBtn.classList = ["submit"];
             restartBtn.style.background = "#FFB020";
             restartBtn.innerText = "重新再计时";
@@ -224,7 +232,7 @@
         totalTime = 0;
         isCountUp = true;
         timmer = window.clearInterval(timmer);
-        document.getElementById('time').innerText = "00:00:00";
+        document.getElementById("time").innerText = "00:00:00";
         changePage(1);
     }
 
@@ -232,7 +240,7 @@
         timmer = window.clearInterval(timmer);
         if (isCountUp) {
             restTime = 0;
-            document.getElementById('time').innerText = "00:00:00";
+            document.getElementById("time").innerText = "00:00:00";
             timmer = window.setInterval(countUp, 1000);
         } else {
             let hour = originalHour;
@@ -247,7 +255,7 @@
             if (second < 10) {
                 second = "0" + second;
             }
-            document.getElementById('time').innerText = hour + ":" + minute + ":" + second;
+            document.getElementById("time").innerText = hour + ":" + minute + ":" + second;
             restTime = totalTime;
             timmer = window.setInterval(countDown, 1000);
         }
@@ -297,7 +305,7 @@
     }
 
     function checkHour() {
-        let tag = document.getElementById('hour');
+        let tag = document.getElementById("hour");
         let rev = false;
         rev = checkIsInteger(tag);
         let num = tag.value;
@@ -309,14 +317,17 @@
 
     function checkIsInteger(tag) {
         let num = tag.value;
-        console.log(num);
-        if (num == "" || num == "undefined" || num == undefined || num == null) {
+        if (num.trim() == "") {
+            tag.value = null;
+        }
+        else if (num == "" || num == "undefined" || num == undefined || num == null) {
             return false;
-        } else {
+        } else {9    
             if (!isNaN(num)) {
                 tag.value = Math.round(parseFloat(num));
                 return true;
             } else {
+                tag.value = null;
                 return false;
             }
         }
