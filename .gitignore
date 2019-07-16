@@ -1,2 +1,5 @@
 *.zip
 ./Zips/
+.vscode/
+.eslintrc.js
+package.json
